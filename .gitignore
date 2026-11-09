@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+/tmp/
+/data/
+/figures/
+/logs/
+# run outputs: only the released checkpoints are tracked
+runs/**/*.csv
+runs/**/*.log
+runs/**/*.npz
+runs/**/plots/
+runs/**/final.pt
+runs/**/best_resume.pt
+!runs/sweep4/B0/seed42/fold1/test_predictions.csv

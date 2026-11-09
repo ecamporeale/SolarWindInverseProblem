@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this code or the trained models, please cite the paper below."
+title: "Learned inner boundary for the ambient solar wind, Part I: code and trained models"
+version: 1.0.0
+date-released: 2026-11-09
+license: MIT
+authors:
+  - family-names: Camporeale
+    given-names: Enrico
+  - family-names: Hu
+    given-names: Andong
+  - family-names: Mayank
+    given-names: Prateek
+  - family-names: Berger
+    given-names: Thomas E.
+preferred-citation:
+  type: article
+  title: "Forecasting the Ambient Solar Wind With a Physics-Informed Learned Inner Boundary: Part I—Differentiable Inverse Reconstruction From Solar Images"
+  authors:
+    - family-names: Camporeale
+      given-names: Enrico
+    - family-names: Hu
+      given-names: Andong
+    - family-names: Mayank
+      given-names: Prateek
+    - family-names: Berger
+      given-names: Thomas E.
+  year: 2026

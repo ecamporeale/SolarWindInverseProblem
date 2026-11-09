@@ -1,0 +1,17 @@
+# The 14 trained configurations of Part I (Table tab:variants and tab:ablations): id | output folder | arguments added to
+# COMMON (runs/train_part1.sh). Each is trained on 5 folds x seeds 42, 43. Extracted from runs/sweep4/configs.txt,
+# runs/sweep4/nam_queue.sh and runs/sweep5_lasso/{run_queue.sh,jobs.txt}.
+B0|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi
+B0_mse|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --loss-weighting uniform
+A1_no_bm|runs/sweep4|--nn1-extra pfss_log10fs_hourly --nn1-drop-hmi
+A2_daily_fs|runs/sweep4|--nn1-extra pfss_log10fs,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi
+A3_with_hmi|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --mlp-hidden-dims 87,64,32
+A4_no_fs|runs/sweep4|--nn1-extra bm_recurrence,bm_recurrence_valid --nn1-drop-hmi
+S_64-32-16|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --mlp-hidden-dims 64,32,16
+F_ball|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --propagation ballistic
+F_lag|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --propagation fixed_lag
+F_lin|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --mlp-hidden-dims none
+F_lin_lag|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --mlp-hidden-dims none --propagation fixed_lag
+G_nam|runs/sweep4|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --nn1-head nam --nam-key 0,1,2,3,4,5,34,35 --nam-pairs 0-35,0-34,4-35
+Q_lin|runs/sweep5_lasso|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --mlp-hidden-dims none --nn1-reduce a0,a1,a3,rec
+Q_nam0.3|runs/sweep5_lasso|--nn1-extra pfss_log10fs_hourly,bm_recurrence,bm_recurrence_valid --nn1-drop-hmi --mlp-hidden-dims none --nn1-reduce a0,a1,a3,rec --nn1-head nam --nam-hidden 16,8 --nam-smooth 0.3
