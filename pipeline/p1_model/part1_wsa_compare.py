@@ -101,11 +101,10 @@ if __name__ == '__main__':
         for cond, x in (('observed', o), ('predicted', p)):
             b = np.digitize(x, EDGES)
             for j in np.unique(b):
-                sel = b == j
-                if sel.sum() < 50 or j == 0 or j == len(EDGES):
-                    continue
-                crows.append(dict(method=NAMES[c], conditioned_on=cond, bin_lo=EDGES[j - 1], bin_hi=EDGES[j], n=int(sel.sum()),
-                                  rmse=float(np.sqrt(np.mean(e[sel] ** 2))), bias=float(e[sel].mean())))
+                sel = b == j                                    # every bin kept, outer bins open-ended (2026-11-10)
+                lo_, hi_ = (EDGES[j - 1] if j > 0 else 0), (EDGES[j] if j < len(EDGES) else 9999)
+                crows.append(dict(method=NAMES[c], conditioned_on=cond, bin_lo=lo_, bin_hi=hi_, n=int(sel.sum()),
+                                  rmse=float(np.sqrt(np.mean(e[sel] ** 2))), bias=float(e[sel].mean()), sparse=bool(sel.sum() < 50)))
     rng = np.random.default_rng(0)
     ub = np.unique(blk); idx = {u: np.flatnonzero(blk == u) for u in ub}
     boots = [np.concatenate([idx[u] for u in rng.choice(ub, len(ub))]) for _ in range(a.B)]
